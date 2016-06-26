@@ -98,9 +98,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return DrawableAnimFragment.newInstance();
+                case 1:
+                    return ViewAnimFragment.newInstance();
+                case 2:
+                    return PropertyAnimFragment.newInstance();
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
@@ -147,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         public PlaceholderFragment() {
         }
-        
+
         AnimationDrawable animationDrawable;
 
         @Override
@@ -155,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             rootView.setBackgroundResource(R.drawable.transport_lights);
-            animationDrawable = (AnimationDrawable)rootView.getBackground();
+            animationDrawable = (AnimationDrawable) rootView.getBackground();
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
