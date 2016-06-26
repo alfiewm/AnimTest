@@ -3,10 +3,10 @@
     android:oneshot="false">
     <item
         android:drawable="@drawable/red_circle"
-        android:duration="200" />
+        android:duration="400" />
     <item
         android:drawable="@drawable/yellow_circle"
-        android:duration="200" />
+        android:duration="100" />
     <item
         android:drawable="@drawable/green_circle"
         android:duration="200" />

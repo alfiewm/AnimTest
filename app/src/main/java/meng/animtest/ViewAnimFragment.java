@@ -41,7 +41,7 @@ public class ViewAnimFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.add_to_cart);
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.chaos);
         textView.startAnimation(animation);
     }
 }
