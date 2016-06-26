@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AnimTest</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World pppppppfrom section8888: %1$d</string>
+</resources>
