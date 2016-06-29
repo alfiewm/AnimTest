@@ -2,4 +2,6 @@
     <string name="app_name">AnimTest</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World section: %1$d</string>
+    <string name="animate">Animate</string>
+    <string name="animation_duration">Duration %d</string>
 </resources>

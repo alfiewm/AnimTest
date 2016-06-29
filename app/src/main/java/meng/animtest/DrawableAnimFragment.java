@@ -33,9 +33,11 @@ public class DrawableAnimFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_drawable_anim, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.textView);
-        textView.setBackgroundResource(R.drawable.transport_lights);
-        // TODO(mwang): 16/6/26 趣味性 改变背景 篮球运动员
-        animationDrawable = (AnimationDrawable) textView.getBackground();
+//        textView.setBackgroundResource(R.drawable.transport_lights);
+//        animationDrawable = (AnimationDrawable) textView.getBackground();
+        //noinspection deprecation
+        animationDrawable = (AnimationDrawable) getResources().getDrawable(R.drawable.traffic_lights);
+        textView.setBackground(animationDrawable);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
