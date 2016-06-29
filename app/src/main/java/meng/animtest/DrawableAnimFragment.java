@@ -36,8 +36,11 @@ public class DrawableAnimFragment extends Fragment {
 //        textView.setBackgroundResource(R.drawable.transport_lights);
 //        animationDrawable = (AnimationDrawable) textView.getBackground();
         //noinspection deprecation
+
         animationDrawable = (AnimationDrawable) getResources().getDrawable(R.drawable.traffic_lights);
         textView.setBackground(animationDrawable);
+        animationDrawable.start();
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

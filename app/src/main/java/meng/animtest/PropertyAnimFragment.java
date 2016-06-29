@@ -2,6 +2,7 @@ package meng.animtest;
 
 import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
+import android.animation.IntEvaluator;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -9,10 +10,13 @@ import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -21,8 +25,9 @@ import android.widget.TextView;
  */
 public class PropertyAnimFragment extends Fragment implements View.OnClickListener {
 
+    private static final String TAG = PropertyAnimFragment.class.getSimpleName();
     private ValueAnimator yAnimator;
-    View target;
+    View targetView;
     ValueAnimator argbValueAnimator;
     ValueAnimator holderAnimator;
     private ObjectAnimator objAnimator;
@@ -45,7 +50,7 @@ public class PropertyAnimFragment extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_property_anim, container, false);
-        target = rootView.findViewById(R.id.square);
+        targetView = rootView.findViewById(R.id.square);
         mDurationSeekbar = (SeekBar) rootView.findViewById(R.id.durationSeek);
         mDurationLabel = (TextView) rootView.findViewById(R.id.durationLabel);
 
@@ -85,7 +90,7 @@ public class PropertyAnimFragment extends Fragment implements View.OnClickListen
         argbValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                target.setBackgroundColor((Integer) animation.getAnimatedValue());
+                targetView.setBackgroundColor((Integer) animation.getAnimatedValue());
             }
         });
         // property holder construct animator
@@ -97,43 +102,58 @@ public class PropertyAnimFragment extends Fragment implements View.OnClickListen
         holderAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                target.setScaleX((Float) animation.getAnimatedValue("scaleX"));
-                target.setScaleY((Float) animation.getAnimatedValue("scaleY"));
+                targetView.setScaleX((Float) animation.getAnimatedValue("scaleX"));
+                targetView.setScaleY((Float) animation.getAnimatedValue("scaleY"));
             }
         });
 
         Keyframe keyframe = Keyframe.ofFloat(0.0f, 0.0f);
         Keyframe keyframe1 = Keyframe.ofFloat(0.5f, 100.0f);
-//        keyframe1.setInterpolator(new DecelerateInterpolator());
+        keyframe1.setInterpolator(new DecelerateInterpolator());
         Keyframe keyframe2 = Keyframe.ofFloat(1.0f, 1000.0f);
-//        keyframe2.setInterpolator(new AccelerateInterpolator());
-        yAnimator = ValueAnimator.ofPropertyValuesHolder(PropertyValuesHolder.ofKeyframe("y", keyframe, keyframe1, keyframe2));
+        keyframe2.setInterpolator(new AccelerateInterpolator());
+        yAnimator = ValueAnimator.ofPropertyValuesHolder(
+                PropertyValuesHolder.ofKeyframe("y", keyframe, keyframe1, keyframe2));
         yAnimator.setDuration(getDuration());
         yAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                target.setY((Float) animation.getAnimatedValue());
+                targetView.setY((Float) animation.getAnimatedValue());
             }
         });
 
-        objAnimator = ObjectAnimator.ofArgb(target, "backgroundColor", 0x80ff0000, 0x8000ff00, 0x800000ff, 0x80ff0000).setDuration(getDuration());
+        objAnimator = ObjectAnimator.ofArgb(targetView, "backgroundColor", 0x80ff0000, 0x8000ff00, 0x800000ff, 0x80ff0000).setDuration(getDuration());
     }
 
     ObjectAnimator getShakeAnimator() {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(target, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0).setDuration(getDuration());
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(targetView, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0).setDuration(getDuration());
         objectAnimator.setInterpolator(new AccelerateInterpolator());
         return objectAnimator;
     }
 
     @Override
     public void onClick(View v) {
-//        target.animate().setDuration(getDuration()).scaleX(0.5f).rotation(720.0f).z(20.0f).start();
+//        targetView.animate().setDuration(getDuration()).scaleX(0.5f).rotation(720.0f).z(20.0f).start();
+//        ObjectAnimator.ofFloat(targetView, "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0)
+//                .setDuration(getDuration()).start();
 //        argbValueAnimator.start();
 //        holderAnimator.start();
 //        yAnimator.start();
 //        AnimatorSet set = new AnimatorSet();
 //        set.playTogether(objAnimator, holderAnimator, getShakeAnimator());
 //        set.start();
-        getShakeAnimator().start();
+//        getShakeAnimator().start();
+        
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setInterpolator(new LinearInterpolator());
+        valueAnimator.setEvaluator(new IntEvaluator());
+        valueAnimator.setIntValues(0, 100, 0, 100, 0);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Log.d(TAG, "onAnimationUpdate: value = " + animation.getAnimatedValue());
+            }
+        });
+        valueAnimator.start();
     }
 }
