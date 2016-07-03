@@ -9,12 +9,19 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 /**
  * Created by meng on 16/6/26.
  */
-public class ViewAnimFragment extends Fragment implements View.OnClickListener {
+public class ViewAnimFragment extends Fragment {
 
-    private TextView textView;
+    @BindView(R.id.textView)
+    TextView targetView;
+    private Unbinder unbinder;
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -34,14 +41,43 @@ public class ViewAnimFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_view_anim, container, false);
-        textView = (TextView) rootView.findViewById(R.id.textView);
-        textView.setOnClickListener(this);
+        unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
 
     @Override
-    public void onClick(View v) {
-        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.chaos);
-        textView.startAnimation(animation);
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.setButton)
+    public void onSetClick(View v) {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.set);
+        targetView.startAnimation(animation);
+    }
+
+    @OnClick(R.id.alphaButton)
+    public void onAlphaClick(View v) {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.alpha);
+        targetView.startAnimation(animation);
+    }
+
+    @OnClick(R.id.rotateButton)
+    public void onRotateClick(View v) {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
+        targetView.startAnimation(animation);
+    }
+
+    @OnClick(R.id.translateButton)
+    public void onTranslateClick(View v) {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.translate);
+        targetView.startAnimation(animation);
+    }
+
+    @OnClick(R.id.scaleButton)
+    public void onScaleClick(View v) {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.scale);
+        targetView.startAnimation(animation);
     }
 }
