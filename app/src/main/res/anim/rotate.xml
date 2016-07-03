@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="200"
-    android:fromDegrees="0"
+    android:duration="2000"
+    android:fromDegrees="-45"
+    android:startOffset="500"
     android:pivotX="20%"
     android:pivotY="80%"
-    android:toDegrees="540" />
+    android:toDegrees="45" />

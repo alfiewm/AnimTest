@@ -1,5 +1,6 @@
 package meng.animtest;
 
+import android.animation.TimeAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,28 +19,24 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+public class MainActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
-    private TabLayout mTabLayout;
+    @BindView(R.id.container)
+    ViewPager mViewPager;
+    @BindView(R.id.tabs)
+    TabLayout mTabLayout;
+    @BindView(R.id.fps)
+    TextView fpsView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -56,8 +53,32 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(mViewPager);
+        setupFpsMonitor();
     }
 
+    private void setupFpsMonitor() {
+        TimeAnimator timeAnimator = new TimeAnimator();
+        timeAnimator.setTimeListener(new TimeAnimator.TimeListener() {
+            private double fps = -1.0d;
+
+            @Override
+            public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
+                double currentFps;
+                if (deltaTime != 0) {
+                    currentFps = 1000.0 / (double) deltaTime;
+                } else {
+                    currentFps = 0.9 * fps;
+                }
+                if (fps < 0.0) {
+                    fps = currentFps;
+                } else {
+                    fps = 0.9 * fps + 0.1 * currentFps; // 计算平均值
+                }
+                fpsView.setText(String.format("fps:%.2f", fps));
+            }
+        });
+        timeAnimator.start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
