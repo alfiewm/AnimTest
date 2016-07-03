@@ -15,21 +15,24 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by meng on 16/6/26.
  */
-public class PropertyAnimFragment extends Fragment implements View.OnClickListener {
+public class PropertyAnimFragment extends Fragment {
 
     private static final String TAG = PropertyAnimFragment.class.getSimpleName();
-    private View targetView;
-    private SeekBar mDurationSeekbar;
-    private TextView mDurationLabel;
     private static final int INITIAL_DURATION_MS = 750;
+    @BindView(R.id.square)
+    View targetView;
+    @BindView(R.id.durationSeek)
+    SeekBar mDurationSeekbar;
+    @BindView(R.id.durationLabel)
+    TextView mDurationLabel;
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
     public static PropertyAnimFragment newInstance() {
         return new PropertyAnimFragment();
     }
@@ -41,9 +44,7 @@ public class PropertyAnimFragment extends Fragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_property_anim, container, false);
-        targetView = rootView.findViewById(R.id.square);
-        mDurationSeekbar = (SeekBar) rootView.findViewById(R.id.durationSeek);
-        mDurationLabel = (TextView) rootView.findViewById(R.id.durationLabel);
+        ButterKnife.bind(this, rootView);
 
         // Register listener to update the text label when the SeekBar value is updated
         mDurationSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -63,8 +64,6 @@ public class PropertyAnimFragment extends Fragment implements View.OnClickListen
 
         // Set initial progress to trigger SeekBarChangeListener and update UI
         mDurationSeekbar.setProgress(INITIAL_DURATION_MS);
-        rootView.findViewById(R.id.animateButton).setOnClickListener(this);
-        rootView.findViewById(R.id.resetButton).setOnClickListener(this);
         return rootView;
     }
 
@@ -72,23 +71,19 @@ public class PropertyAnimFragment extends Fragment implements View.OnClickListen
         return mDurationSeekbar.getProgress();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.animateButton:
-//                runValueAnimator(targetView);
-//                runViewPropertyAnimator(targetView);
-//                runObjectAnimators(targetView);
-//                runObjectAnimator(targetView);
-//                runKeyframeAnimation(targetView);
-                runShakeAnimation(targetView);
-                break;
-            case R.id.resetButton:
-                AnimHelper.resetView(targetView);
-                break;
-            default:
-                break;
-        }
+    @OnClick(R.id.animateButton)
+    public void onClickAnimate(View v) {
+//        runValueAnimator(targetView);
+//        runViewPropertyAnimator(targetView);
+//        runObjectAnimators(targetView);
+//        runObjectAnimator(targetView);
+//        runKeyframeAnimation(targetView);
+        runShakeAnimation(targetView);
+    }
+
+    @OnClick(R.id.resetButton)
+    public void onClickReset(View v) {
+        AnimHelper.resetView(targetView);
     }
 
     private void runKeyframeAnimation(View targetView) {
