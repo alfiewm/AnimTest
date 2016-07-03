@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout mTabLayout;
     @BindView(R.id.fps)
     TextView fpsView;
+    private static boolean sShowFps = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
+                if (!sShowFps) {
+                    return;
+                }
                 double currentFps;
                 if (deltaTime != 0) {
                     currentFps = 1000.0 / (double) deltaTime;
@@ -89,16 +93,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.show_fps) {
+            item.setChecked(!item.isChecked());
+            sShowFps = item.isChecked();
+            fpsView.setVisibility(sShowFps ? View.VISIBLE : View.GONE);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

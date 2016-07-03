@@ -10,10 +10,13 @@ import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -34,6 +37,8 @@ public class PropertyAnimFragment extends Fragment {
     SeekBar mDurationSeekbar;
     @BindView(R.id.durationLabel)
     TextView mDurationLabel;
+    @BindView(R.id.resetButton)
+    Button resetBtn;
 
     public static PropertyAnimFragment newInstance() {
         return new PropertyAnimFragment();
@@ -66,7 +71,22 @@ public class PropertyAnimFragment extends Fragment {
 
         // Set initial progress to trigger SeekBarChangeListener and update UI
         mDurationSeekbar.setProgress(INITIAL_DURATION_MS);
+        initResetButton();
         return rootView;
+    }
+
+    private void initResetButton() {
+        resetBtn.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    v.animate().scaleX(0.5f).scaleY(0.5f).setDuration(300).setInterpolator(new DecelerateInterpolator()).start();
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setInterpolator(new OvershootInterpolator()).start();
+                }
+                return false;
+            }
+        });
     }
 
     private long getDuration() {
