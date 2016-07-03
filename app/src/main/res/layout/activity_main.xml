@@ -36,6 +36,6 @@
         android:layout_below="@id/tabs"
         android:layout_alignParentRight="true"
         android:textColor="#FF0000"
-        android:textSize="32sp"
+        android:textSize="23sp"
         tools:text="fps:32.23" />
 </RelativeLayout>
