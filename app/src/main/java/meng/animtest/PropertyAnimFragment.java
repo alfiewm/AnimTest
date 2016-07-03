@@ -1,5 +1,7 @@
 package meng.animtest;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.ArgbEvaluator;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
@@ -78,12 +80,19 @@ public class PropertyAnimFragment extends Fragment {
 //        runObjectAnimators(targetView);
 //        runObjectAnimator(targetView);
 //        runKeyframeAnimation(targetView);
-        runShakeAnimation(targetView);
+//        runShakeAnimation(targetView);
+        loadAnimationFromXmlAndRun(targetView);
     }
 
     @OnClick(R.id.resetButton)
     public void onClickReset(View v) {
         AnimHelper.resetView(targetView);
+    }
+
+    private void loadAnimationFromXmlAndRun(View targetView) {
+        Animator anim = AnimatorInflater.loadAnimator(getActivity(), R.animator.combo);
+        anim.setTarget(targetView);
+        anim.start();
     }
 
     private void runKeyframeAnimation(View targetView) {
