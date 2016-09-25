@@ -7,7 +7,7 @@ package meng.animtest.asdemo;
 @SuppressWarnings("unused")
 public class ConfigDemo {
     /**
-     * 1. Tools -> create command line studio
+     * 1. Tools -> create command line launcher
      * diff/merge
      */
 

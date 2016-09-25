@@ -7,6 +7,7 @@ import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -102,6 +103,7 @@ public class PropertyAnimFragment extends Fragment {
 //        runKeyframeAnimation(targetView);
 //        runShakeAnimation(targetView);
         loadAnimationFromXmlAndRun(targetView);
+        runShakeAnimation(null);
     }
 
     @OnClick(R.id.resetButton)
@@ -127,6 +129,7 @@ public class PropertyAnimFragment extends Fragment {
     }
 
     private void runShakeAnimation(View targetView) {
+        targetView.setBackgroundColor(Color.RED);
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(targetView, View.TRANSLATION_X, 0, 25, -25, 25, -25, 15, -15, 6, -6, 0).setDuration(getDuration());
         objectAnimator.setInterpolator(new AccelerateInterpolator());
         objectAnimator.start();

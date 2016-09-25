@@ -1,10 +1,13 @@
 package meng.animtest.asdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import meng.animtest.MainActivity;
 
 /**
  * Created by meng on 16/9/17.
@@ -128,9 +131,23 @@ public class AdvancedShortcutsDemo {
      */
 
     /**
-     * 回到上个编辑位置Cmd + Shift + Backspace
+     * 11. 回到上个编辑位置Cmd + Shift + Backspace
      */
     private void editingPlace() {
         
+    }
+
+    /**
+     * 12. 剪贴板diff
+     */
+    public static void start1(Context context) {
+        Intent starter = new Intent(context, MainActivity.class);
+        starter.putExtra("xxxx", "xxxx");
+        context.startActivity(starter);
+    }
+    public static void start2(Context context) {
+        Intent starter = new Intent(context, MainActivity.class);
+        starter.putExtra("xxx", "xxxx");
+        context.startActivity(starter);
     }
 }

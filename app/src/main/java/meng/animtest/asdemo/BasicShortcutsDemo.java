@@ -13,6 +13,16 @@ public class BasicShortcutsDemo extends Fragment {
     private int i;
     private int defaultMaxHeight = 120;
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 打开文件
      * Cmd + O
@@ -25,6 +35,16 @@ public class BasicShortcutsDemo extends Fragment {
         i = 2;
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 导航&搜索
      * 前/后 Cmd + [/]
@@ -34,6 +54,7 @@ public class BasicShortcutsDemo extends Fragment {
      * 定位到声明 Cmd + B
      * 定位到实现 Cmd + Alt + B
      * 定位到父类或父类方法 Cmd + U
+     * 查看类继承结构 Ctrl + H
      * 在打开的文件中切换 Ctrl + Tab (同样适用于很多应用,例如Chrome)
      * 定位到下一个高亮错误 F2
      */
@@ -41,6 +62,16 @@ public class BasicShortcutsDemo extends Fragment {
         i = 3;
         TextView tv = new TextView(null);
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 编辑&重构
@@ -51,7 +82,7 @@ public class BasicShortcutsDemo extends Fragment {
      * 移动 F6
      * 抽出方法 Cmd + Alt + M
      * 抽出变量
-     * 内联
+     * 内联方法
      * 上下移动代码块 Cmd/ALt + Shift + Arrow
      */
     public void refactorFunc(Context context) {
@@ -65,19 +96,40 @@ public class BasicShortcutsDemo extends Fragment {
         // step 2
         // step 3
     }
-    
+
     public int getDefaultMaxHeight() {
         return defaultMaxHeight;
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Live Templates
      * Cmd + J
      * 默认提供了很多比自动补全更强大的补全功能
      * logd/logt/logm/logr/wtf
+     * todo/fixme
      */
     public void liveTemplates() {
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 万用命令 Cmd + Shift + A
