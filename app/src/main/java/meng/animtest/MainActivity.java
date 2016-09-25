@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import meng.animtest.asdemo.BasicShortcutsDemo;
 
 public class MainActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BasicShortcutsDemo.navigation();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= 21) {
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
         setupFpsMonitor();
     }
+    
+    private BasicShortcutsDemo.TestListener testListener = new BasicShortcutsDemo.TestListener() {
+        @Override
+        public void onEvent() {
+            // TODO(mwang): 2016/9/25 xxxx 
+            // FIXME(mwang): 2016/9/25 REMOVE THIS
+            // do nothing
+        }
+    };
 
     private void setupFpsMonitor() {
         TimeAnimator timeAnimator = new TimeAnimator();

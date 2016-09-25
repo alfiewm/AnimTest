@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import meng.animtest.asdemo.BasicShortcutsDemo;
 import meng.animtest.asdemo.DebuggerDemo;
 
 /**
@@ -26,4 +27,11 @@ public class DemoApplication extends Application {
         DebuggerDemo.markObject(intList);
 //        DebuggerDemo.startMainActivity(this);
     }
+    
+    public BasicShortcutsDemo.TestListener testListener = new BasicShortcutsDemo.TestListener() {
+        @Override
+        public void onEvent() {
+            // do nothing.
+        }
+    };
 }

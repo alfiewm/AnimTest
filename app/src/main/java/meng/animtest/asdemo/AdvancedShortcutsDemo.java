@@ -15,8 +15,19 @@ import meng.animtest.MainActivity;
 @SuppressWarnings("unused")
 public class AdvancedShortcutsDemo {
     private static final String TAG = "AdvanceShortcutsDemo";
-    private static final String CONSTANT = "I'm a CONSTANT field";
+    private static final String CONSTANT = "CONSTANT VALUE";
     private Context mContext;
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 1. Smart Join: Ctrl + Shift + J
@@ -31,15 +42,35 @@ public class AdvancedShortcutsDemo {
         final String desc = "Quiz"
                 + " activity"
                 + " description: ";
-        return desc + "TAG: " + TAG + "Constant: " + CONSTANT; 
+        return desc + "TAG: " + TAG + "Constant: " + CONSTANT;
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
-     * 2.- Completion: Enter vs Tab
+     * 2.- 自动补全: Enter vs Tab
      */
     public boolean completion(String first, String second) {
         return first.contains(second);
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 3.- instanceof context
@@ -51,8 +82,19 @@ public class AdvancedShortcutsDemo {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 4.- Multi Cursor
+     * 
      * Select Next: Ctrl+G
      * Skip: Cmd+G
      * Live Templates 对所有的光标都适用
@@ -60,19 +102,38 @@ public class AdvancedShortcutsDemo {
      */
     public void logPlayers() {
     }
-    
+
+
+
+
+
+
+
+
+
+
+
     // 5.- Navigation
-    // Cmd+F12 Navigate (感觉像是Cmd + O,显示当前文件的目录结构)
     // 给当前行添加书签 F3?
     // Ctrl + Shift + 0 添加0号书签
     // Ctrl + 0   回到0号书签
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 6.- Extract method
-     * Selection with:
-     * Alt + up/down
-     * Method:
-     * Cmd+ALt+M OR Cmd + Shit + A -> Extract Method
+     * 
+     * 使用Alt + up/down选择
+     * 
+     * Cmd + ALt + M
      */
     public void values() {
         List<Integer> even = new LinkedList<>();
@@ -92,21 +153,44 @@ public class AdvancedShortcutsDemo {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 7.- Postfix code templates.
-     * 还有很多
+     * 
+     * Cmd + J
      */
     public void postfix() {
         int[] ints = {1, 2, 3, 4};
         // ints.for/fori/forr
         
         Object o = new Object();
-        // o.nn
+        // o.nn/null
         
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 8.- Manipulate if conditions with intents.
+     * 
+     * 保证不会犯低级错误
      */
     public void conditions(boolean a , boolean b, boolean c, boolean d) {
         if (!(!(c || d) || !(a || b))) {
@@ -114,8 +198,20 @@ public class AdvancedShortcutsDemo {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 9.- Ctrl + Space vs Ctrl-Shift-Space (smart!)
+     * 
+     *  智能自动补全
      */
     public Context getContext() {
         return null;
@@ -125,10 +221,32 @@ public class AdvancedShortcutsDemo {
         return null;
     }
 
+
+
+
+
+
+
+
+
+
+
     /**
-     * 10.- local history
-     * Ctrl + Shift + A, local history
+     * 10.- 本地历史记录
+     * Ctrl + Shift + A
+     * Ctrl + V
      */
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 11. 回到上个编辑位置Cmd + Shift + Backspace
@@ -136,6 +254,16 @@ public class AdvancedShortcutsDemo {
     private void editingPlace() {
         
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 12. 剪贴板diff
