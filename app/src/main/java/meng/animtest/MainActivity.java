@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BasicShortcutsDemo.navigation();
+        BasicShortcutsDemo.navigation(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= 21) {

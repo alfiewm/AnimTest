@@ -62,9 +62,11 @@ public class BasicShortcutsDemo extends Fragment {
      * 定位到下一个高亮错误 F2
      * 建议操作 Alt + Enter
      */
-    public static void navigation() {
-        TextView tv = new TextView(null);
-        testListener.onEvent();
+    public static void navigation(Context context) {
+        TextView tv = new TextView(context);
+        if (testListener != null) {
+            testListener.onEvent();
+        }
     }
 
     public static TestListener testListener;

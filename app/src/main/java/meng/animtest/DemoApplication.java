@@ -17,6 +17,7 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+//        Debug.waitForDebugger();
         DebuggerDemo.breakOnce(20);
         for (int i = 0; i < 1000; i++) {
             DebuggerDemo.conditionalBreakPoint(i);
@@ -32,6 +33,7 @@ public class DemoApplication extends Application {
         @Override
         public void onEvent() {
             // do nothing.
+            // FIXME(mwang): 16/9/25 remove this
         }
     };
 }
