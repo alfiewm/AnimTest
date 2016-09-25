@@ -10,9 +10,9 @@ import java.util.List;
  * Created by meng on 16/9/17.
  */
 @SuppressWarnings("unused")
-public class EditingDemo {
-    private static final String TAG = "EditingDemo";
-    private static final String CONSTANT = "Google I/O!";
+public class AdvancedShortcutsDemo {
+    private static final String TAG = "AdvanceShortcutsDemo";
+    private static final String CONSTANT = "I'm a CONSTANT field";
     private Context mContext;
 
     /**
@@ -20,6 +20,11 @@ public class EditingDemo {
      * Copy concatenated intent.
      */
     public String getDescription() {
+        int i;
+        i = 2;
+        // comments 1
+        // comments 2
+        
         final String desc = "Quiz"
                 + " activity"
                 + " description: ";
@@ -40,30 +45,17 @@ public class EditingDemo {
      */
     public void setContext(Object o) {
         if (o instanceof Context) {
-            Context context = (Context) o;
         }
     }
 
     /**
-     * 4.- Multicursor
+     * 4.- Multi Cursor
      * Select Next: Ctrl+G
      * Skip: Cmd+G
      * Live Templates 对所有的光标都适用
      * 多个粘贴板
-     * Cmd+Shift+A: 搜索所有命令
      */
     public void logPlayers() {
-        Log.d(TAG, "Andres Merkel <andres@fenbi.com>");
-        Log.d(TAG, "Pedro Xu <pedro@fenbi.com>");
-        Log.d(TAG, "Wayne Lampan <wayne@fenbi.com>");
-        Log.d(TAG, "Wilton Ping <wilton@fenbi.com>");
-        Log.d(TAG, "Arnulfo Player <arnulfo@fenbi.com>");
-        Log.d(TAG, "Eliz Gover <eliz@fenbi.com>");
-        Log.d(TAG, "In Trombetta <in@fenbi.com>");
-        Log.d(TAG, "Melania Mcmullan <melania@fenbi.com>");
-        Log.d(TAG, "Frieda Herandez <frieda@fenbi.com>");
-        Log.d(TAG, "Joeann Minchew <joeann@fenbi.com>");
-
     }
     
     // 5.- Navigation
@@ -103,10 +95,11 @@ public class EditingDemo {
      */
     public void postfix() {
         int[] ints = {1, 2, 3, 4};
-        // ints.forr
+        // ints.for/fori/forr
         
         Object o = new Object();
         // o.nn
+        
     }
 
     /**
@@ -137,4 +130,7 @@ public class EditingDemo {
     /**
      * 回到上个编辑位置Cmd + Shift + Backspace
      */
+    private void editingPlace() {
+        
+    }
 }
