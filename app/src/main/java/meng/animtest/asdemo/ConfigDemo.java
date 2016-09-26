@@ -14,7 +14,6 @@ public class ConfigDemo {
 
     /**
     * 2. Tools -> create command line launcher
-    * diff/merge
     */
 
     /**
@@ -33,12 +32,9 @@ public class ConfigDemo {
 
     /**
      * 6. ideaVIM插件
-     * 
-     * 键位冲突
      */
 
     /**
      * 7. ADB idea插件
-     * Ctrl + Shift + V
      */
 }
