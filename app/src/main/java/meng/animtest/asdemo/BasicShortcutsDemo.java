@@ -20,6 +20,12 @@ public class BasicShortcutsDemo extends Fragment {
 
 
 
+    /**
+     * 万能命令 Cmd + Shift + A
+     */
+
+
+
 
 
 
@@ -29,13 +35,6 @@ public class BasicShortcutsDemo extends Fragment {
 
 
     /**
-     * 文件操作
-     * 
-     * Cmd + O
-     * Cmd + Shift + O
-     * Cmd + Alt + O (path)
-     * Cmd + E
-     * Cmd + Shift + E
      * Shift Shift (tab)
      */
     public void openFile() {
@@ -53,17 +52,22 @@ public class BasicShortcutsDemo extends Fragment {
 
 
     /**
-     * 导航&搜索
-     *
-     * 前/后 Cmd + [/]
-     * 全局搜索 Cmd + Shift + F
-     * 文件结构 Cmd + F12
-     * 查看所有引用 Alt + F7
-     * 定位到声明 Cmd + B
-     * 定位到实现 Cmd + Alt + B
-     * 定位到父类或父类方法 Cmd + U
-     * 查看类继承结构 Ctrl + H
-     * 在打开的文件中切换 Ctrl + Tab (同样适用于很多应用,例如Chrome)
+     * Alt + F1
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      * 定位到下一个高亮错误 F2
      * 建议操作 Alt + Enter
      */
@@ -97,14 +101,7 @@ public class BasicShortcutsDemo extends Fragment {
 
 
     /**
-     * 编辑&重构
-     *
-     * 格式化文件 Cmd + Alt + L
      * 重构弹窗 Ctrl + T
-     * 重命名  Shift + F6
-     * 抽出方法 Cmd + Alt + M
-     * 抽出变量
-     * 内联方法
      * 上下移动代码块 Cmd/ALt + Shift + Arrow
      */
     public void refactorFunc(Context context) {
@@ -139,27 +136,16 @@ public class BasicShortcutsDemo extends Fragment {
      * Live Templates
      * 
      * Cmd + J
-     * 默认提供了很多比自动补全更强大的补全功能
      * logd/logt/logm/logr/wtf
      * ifn/inn
      * visible/gone
-     * toast
      * todo/fixme
      */
     public void liveTemplates(TextView tv) {
     }
 
 
-
-
-
-
-
-
-
-
-
     /**
-     * 万能命令 Cmd + Shift + A
+     *
      */
 }

@@ -1,6 +1,7 @@
 package meng.animtest;
 
 import android.app.Application;
+import android.os.Debug;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,15 +18,16 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        Debug.waitForDebugger();
+        Debug.waitForDebugger();
         DebuggerDemo.breakOnce(20);
-        for (int i = 0; i < 1000; i++) {
-            DebuggerDemo.conditionalBreakPoint(i);
-        }
         DebuggerDemo.viewAs(1474778285000L);
         List<Integer> intList = new ArrayList<>();
         intList.addAll(Arrays.asList(new Integer[] {1, 2, 3, 4, 5}));
         DebuggerDemo.markObject(intList);
+        for (Integer integer : intList) {
+            DebuggerDemo.conditionalBreakPoint(integer);
+        }
+        DebuggerDemo.logBreakPoint(324);
 //        DebuggerDemo.startMainActivity(this);
     }
     

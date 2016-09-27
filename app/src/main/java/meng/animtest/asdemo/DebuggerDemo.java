@@ -29,7 +29,7 @@ public class DebuggerDemo {
 
     /**
      * Attach Debugger(Eclipse 貌似没有这个功能)
-     * 神技,默认没有快捷键,强烈建议设置一个
+     * 默认没有快捷键,强烈建议设置一个
      */
 
 
@@ -63,7 +63,7 @@ public class DebuggerDemo {
     /**
      * 条件断点
      */
-    public static int conditionalBreakPoint(int value) {
+    public static int conditionalBreakPoint(Integer value) {
         return value;
     }
 
@@ -119,7 +119,7 @@ public class DebuggerDemo {
      */
     public static void markObject(List<Integer> integerList) {
         GLOBAL_INT = 2;
-        // TODO(mwang): 16/9/25
+        GLOBAL_INT = 3;
     }
 
 
@@ -213,7 +213,7 @@ public class DebuggerDemo {
 
 
     /**
-     * Analyze data flow to here
+     * 分析数据流向
      */
     public static void startMainActivity(Context context) {
         Intent it = new Intent(context, MainActivity.class);
