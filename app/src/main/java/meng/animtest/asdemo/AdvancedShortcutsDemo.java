@@ -2,12 +2,14 @@ package meng.animtest.asdemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.LayoutRes;
 import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import meng.animtest.MainActivity;
+import meng.animtest.R;
 
 /**
  * Created by meng on 16/9/17.
@@ -100,7 +102,8 @@ public class AdvancedShortcutsDemo {
      * Live Templates 对所有的光标都适用
      * 多个粘贴板
      */
-    public void logPlayers() {
+    public @LayoutRes int logPlayers() {
+        return R.layout.fragment_property_anim;
     }
 
 
