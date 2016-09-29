@@ -8,33 +8,82 @@ package meng.animtest.asdemo;
 public class ConfigDemo {
 
     /**
-     * 1. Help -> Edit custom VM options
+     * 1. Help -> 修改虚拟机配置
      */
+
+
+
+
+
+
+
+
+
+
 
 
     /**
     * 2. Tools -> create command line launcher
     */
 
+
+
+
+
+
+
+
+
+
+
     /**
      * 3. Auto import
+     * Optimize Imports 快捷键
      */
     public static void autoImport() {
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * 4. logcat colors
      */
 
-    /**
-     * 5. 搜索结果pin
-     */
+
+
+
+
+
+
+
+
+
+
+
 
     /**
-     * 6. ideaVIM插件
+     * 5. ideaVIM/emacsIdea
      */
 
+
+
+
+
+
+
+
+
+
+
     /**
-     * 7. ADB idea插件
+     * 6. ADB idea插件
      */
 }
