@@ -40,6 +40,27 @@ public class DebuggerDemo {
 
 
 
+
+
+
+
+    /**
+     * 调试应用启动瞬间,例如做启动优化
+     *
+     * Debug.waitForDebugger();
+     */
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 变量断点
      */
@@ -175,32 +196,6 @@ public class DebuggerDemo {
     public static long viewAs(long timeValue) {
         return timeValue;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * 调试应用启动瞬间,例如做启动优化
-     *
-     * Debug.waitForDebugger();
-     */
 
 
 
