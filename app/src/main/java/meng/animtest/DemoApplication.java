@@ -1,7 +1,6 @@
 package meng.animtest;
 
 import android.app.Application;
-import android.os.Debug;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +17,7 @@ public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Debug.waitForDebugger();
+//        Debug.waitForDebugger();
         DebuggerDemo.breakOnce(20);
         DebuggerDemo.viewAs(1474778285000L);
         List<Integer> intList = new ArrayList<>();
