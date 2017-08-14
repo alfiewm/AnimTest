@@ -52,7 +52,7 @@ public class DurationSettingView extends LinearLayout {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-        durationSeekBar.setProgress(1000);
+        durationSeekBar.setProgress(400);
     }
 
     public int getDuration() {

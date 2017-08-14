@@ -3,13 +3,18 @@ package meng.animtest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -51,6 +56,8 @@ public class CartAnimFragment extends Fragment {
     TextView cartBadge;
     @BindView(R.id.anim_cart_badge)
     TextView animCartBadge;
+    @BindView(R.id.pop_anchor)
+    View popAnchor;
 
     private int cartItemCount = 0;
 
@@ -75,8 +82,43 @@ public class CartAnimFragment extends Fragment {
         }
     }
 
+    private View popRoot;
+    private View popContent;
+    private PopupWindow popupWindow;
+
+    @OnClick(R.id.btn_buy)
+    void onBuyNowClicked() {
+        popRoot = LayoutInflater.from(getActivity()).inflate(R.layout.view_popup, null, false);
+        popupWindow = new PopupWindow(popRoot,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        popContent = popRoot.findViewById(R.id.pop_content);
+        popRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismissPopWindow();
+            }
+        });
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setAnimationStyle(0);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        popupWindow.showAtLocation(popAnchor, Gravity.CENTER, 0, 0);
+    }
+
+    private void dismissPopWindow() {
+        popContent.animate().translationY(popContent.getHeight()).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                popupWindow.dismiss();
+                onAddToCartClicked();
+            }
+        });
+    }
+
     @OnClick(R.id.btn_add_to_cart)
-    void onAddToCartClick() {
+    void onAddToCartClicked() {
         final float dotRadius = animDot.getWidth() / 2;
         final float startX = addToCartView.getX() + addToCartView.getWidth() / 2 - dotRadius;
         final float startY = bottomBar.getHeight();

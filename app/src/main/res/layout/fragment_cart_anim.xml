@@ -5,18 +5,30 @@
     android:layout_height="match_parent"
     android:clipChildren="false">
 
+    <View
+        android:id="@+id/pop_anchor"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
     <meng.animtest.ui.DurationSettingView
         android:id="@+id/duration_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/bottom_bar"
+        android:background="#e7e7e7" />
+
     <LinearLayout
-        android:id="@+id/bottom_bar"
+        android:id="@id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
+        android:clipChildren="false"
         android:orientation="horizontal">
 
         <TextView
@@ -58,12 +70,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginRight="8dp"
+                    android:layout_marginTop="-5dp"
                     android:background="@drawable/cart_dot"
                     android:gravity="center"
-                    android:minHeight="14dp"
-                    android:minWidth="14dp"
+                    android:minHeight="15dp"
+                    android:minWidth="15dp"
+                    android:padding="1dp"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="9sp"
                     android:visibility="gone"
                     tools:text="1"
                     tools:visibility="visible" />
@@ -103,12 +117,6 @@
             android:textSize="15sp" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_above="@id/bottom_bar"
-        android:background="#e7e7e7" />
 
     <FrameLayout
         android:id="@+id/anim_container"
@@ -157,12 +165,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginRight="8dp"
+                    android:layout_marginTop="-5dp"
                     android:background="@drawable/cart_dot"
                     android:gravity="center"
-                    android:minHeight="14dp"
-                    android:minWidth="14dp"
+                    android:minHeight="15dp"
+                    android:minWidth="15dp"
                     android:textColor="@android:color/white"
-                    android:textSize="10sp"
+                    android:textSize="9sp"
                     android:visibility="gone"
                     tools:text="1"
                     tools:visibility="visible" />
