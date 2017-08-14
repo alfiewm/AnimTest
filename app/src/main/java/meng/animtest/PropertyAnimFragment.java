@@ -103,7 +103,7 @@ public class PropertyAnimFragment extends Fragment {
 //        runKeyframeAnimation(targetView);
 //        runShakeAnimation(targetView);
         loadAnimationFromXmlAndRun(targetView);
-        runShakeAnimation(null);
+        runShakeAnimation(targetView);
     }
 
     @OnClick(R.id.resetButton)

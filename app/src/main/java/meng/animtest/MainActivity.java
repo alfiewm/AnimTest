@@ -125,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        public static final int CART_ANIM_IDX = 0;
+        public static final int DRAWABLE_ANIM_IDX = 1;
+        public static final int VIEW_ANIM_IDX = 2;
+        public static final int PROPERTY_ANIM_IDX = 3;
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -132,11 +137,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:
+                case CART_ANIM_IDX:
+                    return CartAnimFragment.newInstance();
+                case DRAWABLE_ANIM_IDX:
                     return DrawableAnimFragment.newInstance();
-                case 1:
+                case VIEW_ANIM_IDX:
                     return ViewAnimFragment.newInstance();
-                case 2:
+                case PROPERTY_ANIM_IDX:
                     return PropertyAnimFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
@@ -146,18 +153,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0:
-                    return "Drawable Animation";
-                case 1:
-                    return "View Animation";
-                case 2:
-                    return "Property Animation";
+                case CART_ANIM_IDX:
+                    return "Cart Anim";
+                case DRAWABLE_ANIM_IDX:
+                    return "Drawable Anim";
+                case VIEW_ANIM_IDX:
+                    return "View Anim";
+                case PROPERTY_ANIM_IDX:
+                    return "Property Anim";
             }
             return null;
         }

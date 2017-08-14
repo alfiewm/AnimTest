@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AnimTest</string>
+    <string name="app_name">Anim Demo</string>
     <string name="fps">Show Fps</string>
     <string name="section_format">Hello World section: %1$d</string>
     <string name="animate">Animate</string>
