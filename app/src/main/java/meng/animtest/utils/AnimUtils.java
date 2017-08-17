@@ -26,6 +26,16 @@ public class AnimUtils {
                 + fraction * fraction * end;
     }
 
+    /**
+     * 三阶贝塞尔曲线计算公式
+     *
+     * @param fraction 时间比率
+     * @param start    起始值
+     * @param end      终止值
+     * @param control1 控制点1值
+     * @param control2 控制点2值
+     * @return 当前值
+     */
     public static float cubicBezier(@FloatRange(from = 0.0f, to = 1.0f) float fraction,
             float start, float end, float control1, float control2) {
         float leftFraction = 1 - fraction;

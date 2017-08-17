@@ -2,6 +2,8 @@ package meng.animtest;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.Keyframe;
+import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -121,20 +123,25 @@ public class CartAnimFragment extends Fragment {
     void onAddToCartClicked() {
         final float dotRadius = animDot.getWidth() / 2;
         final float startX = addToCartView.getX() + addToCartView.getWidth() / 2 - dotRadius;
-        final float startY = bottomBar.getHeight();
+        final float startY = 0;
         final float endX = cartContainer.getX() + cartContainer.getWidth() / 2 - dotRadius
                 + getResources().getDisplayMetrics().density * 1;
-        final float endY = bottomBar.getHeight() + cartView.getY() + cartView.getHeight() / 4;
+        final float endY = cartView.getY() + cartView.getHeight() / 4;
         final float control1X = addToCartView.getX() + addToCartView.getWidth() / 2;
-        final float control1Y = -bottomBar.getHeight() / 2;
+        final float control1Y = -bottomBar.getHeight() * 3 / 2;
         final float control2X = cartContainer.getX() + cartContainer.getWidth() / 2;
-        final float control2Y = -bottomBar.getHeight() / 2;
+        final float control2Y = -bottomBar.getHeight() * 3 / 2;
 
         animContainer.setVisibility(View.VISIBLE);
-        ValueAnimator animator = new ValueAnimator();
-        animator.setFloatValues(0f, 1.0f);
+        Keyframe startFrame = Keyframe.ofFloat(0f, 0f);
+        Keyframe upFrame = Keyframe.ofFloat(0.5f, 0.5f);
+        upFrame.setInterpolator(new DecelerateInterpolator());
+        Keyframe downFrame = Keyframe.ofFloat(1f, 1f);
+        downFrame.setInterpolator(new AccelerateInterpolator());
+        PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofKeyframe("f", startFrame, upFrame,
+                downFrame);
+        ValueAnimator animator = ValueAnimator.ofPropertyValuesHolder(propertyValuesHolder);
         animator.setDuration(durationSettingView.getDuration());
-        animator.setInterpolator(new AccelerateInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

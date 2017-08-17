@@ -100,10 +100,10 @@ public class PropertyAnimFragment extends Fragment {
 //        runViewPropertyAnimator(targetView);
 //        runObjectAnimators(targetView);
 //        runObjectAnimator(targetView);
-//        runKeyframeAnimation(targetView);
+        runKeyframeAnimation(targetView);
 //        runShakeAnimation(targetView);
-        loadAnimationFromXmlAndRun(targetView);
-        runShakeAnimation(targetView);
+//        loadAnimationFromXmlAndRun(targetView);
+//        runShakeAnimation(targetView);
     }
 
     @OnClick(R.id.resetButton)
