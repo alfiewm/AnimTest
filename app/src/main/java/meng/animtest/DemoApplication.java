@@ -3,6 +3,7 @@ package meng.animtest;
 import android.app.Application;
 
 import meng.animtest.asdemo.BasicShortcutsDemo;
+import meng.animtest.utils.DimenUtils;
 
 /**
  * Created by meng on 2016/9/25.
@@ -23,6 +24,7 @@ public class DemoApplication extends Application {
 //        }
 //        DebuggerDemo.logBreakPoint(324);
 //        DebuggerDemo.startMainActivity(this);
+        DimenUtils.init(this);
     }
 
     public BasicShortcutsDemo.TestListener testListener = new BasicShortcutsDemo.TestListener() {

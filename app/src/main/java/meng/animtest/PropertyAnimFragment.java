@@ -2,6 +2,7 @@ package meng.animtest;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import meng.animtest.utils.DimenUtils;
 
 /**
  * Created by meng on 16/6/26.
@@ -50,7 +52,7 @@ public class PropertyAnimFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_property_anim, container, false);
         ButterKnife.bind(this, rootView);
 
@@ -81,9 +83,11 @@ public class PropertyAnimFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    v.animate().scaleX(0.5f).scaleY(0.5f).setDuration(300).setInterpolator(new DecelerateInterpolator()).start();
+                    v.animate().scaleX(0.5f).scaleY(0.5f).setDuration(300).setInterpolator(
+                            new DecelerateInterpolator()).start();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setInterpolator(new OvershootInterpolator()).start();
+                    v.animate().scaleX(1.0f).scaleY(1.0f).setDuration(300).setInterpolator(
+                            new OvershootInterpolator()).start();
                 }
                 return false;
             }
@@ -98,12 +102,13 @@ public class PropertyAnimFragment extends Fragment {
     public void onClickAnimate(View v) {
 //        runValueAnimator(targetView);
 //        runViewPropertyAnimator(targetView);
-        runObjectAnimators(targetView);
+//        runObjectAnimators(targetView);
 //        runObjectAnimator(targetView);
 //        runKeyframeAnimation(targetView);
 //        runShakeAnimation(targetView);
 //        loadAnimationFromXmlAndRun(targetView);
 //        runShakeAnimation(targetView);
+        scaleTranslateAndBounce(targetView);
     }
 
     @OnClick(R.id.resetButton)
@@ -130,7 +135,8 @@ public class PropertyAnimFragment extends Fragment {
 
     private void runShakeAnimation(View targetView) {
         targetView.setBackgroundColor(Color.RED);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(targetView, View.TRANSLATION_X, 0, 25, -25, 25, -25, 15, -15, 6, -6, 0).setDuration(getDuration());
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(targetView, View.TRANSLATION_X, 0, 25, -25, 25, -25, 15,
+                -15, 6, -6, 0).setDuration(getDuration());
         objectAnimator.setInterpolator(new AccelerateInterpolator());
         objectAnimator.start();
     }
@@ -167,5 +173,27 @@ public class PropertyAnimFragment extends Fragment {
         PropertyValuesHolder rotationX = PropertyValuesHolder.ofFloat(View.ROTATION_X, 720.0f);
         PropertyValuesHolder z = PropertyValuesHolder.ofFloat(View.Z, 20.0f);
         ObjectAnimator.ofPropertyValuesHolder(targetView, scaleX, rotationX, z).setDuration(getDuration()).start();
+    }
+
+    private void scaleTranslateAndBounce(View targetView) {
+        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.1f);
+        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.1f);
+        Animator scaleAnimator = ObjectAnimator.ofPropertyValuesHolder(targetView, scaleX, scaleY).setDuration(
+                getDuration());
+
+        PropertyValuesHolder transX = PropertyValuesHolder.ofFloat(View.TRANSLATION_X, DimenUtils.getScreenWidth() / 2);
+        PropertyValuesHolder transY = PropertyValuesHolder.ofFloat(View.TRANSLATION_Y,
+                -DimenUtils.getScreenHeight() / 2);
+        Animator transAnimator = ObjectAnimator.ofPropertyValuesHolder(targetView, transX, transY).setDuration(
+                getDuration());
+
+        PropertyValuesHolder moreScaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.7f, 1.2f, 0.8f, 1.1f, 1.0f);
+        PropertyValuesHolder moreScaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.7f, 1.2f, 0.8f, 1.1f, 1.0f);
+        ObjectAnimator bounceAnimator = ObjectAnimator.ofPropertyValuesHolder(resetBtn, moreScaleX,
+                moreScaleY).setDuration(getDuration());
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playSequentially(scaleAnimator, transAnimator, bounceAnimator);
+        animatorSet.start();
     }
 }
