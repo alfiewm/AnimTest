@@ -98,9 +98,9 @@ public class PropertyAnimFragment extends Fragment {
     public void onClickAnimate(View v) {
 //        runValueAnimator(targetView);
 //        runViewPropertyAnimator(targetView);
-//        runObjectAnimators(targetView);
+        runObjectAnimators(targetView);
 //        runObjectAnimator(targetView);
-        runKeyframeAnimation(targetView);
+//        runKeyframeAnimation(targetView);
 //        runShakeAnimation(targetView);
 //        loadAnimationFromXmlAndRun(targetView);
 //        runShakeAnimation(targetView);

@@ -2,8 +2,6 @@ package meng.animtest;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.Keyframe;
-import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -133,14 +130,16 @@ public class CartAnimFragment extends Fragment {
         final float control2Y = -bottomBar.getHeight() * 3 / 2;
 
         animContainer.setVisibility(View.VISIBLE);
-        Keyframe startFrame = Keyframe.ofFloat(0f, 0f);
-        Keyframe upFrame = Keyframe.ofFloat(0.5f, 0.5f);
-        upFrame.setInterpolator(new DecelerateInterpolator());
-        Keyframe downFrame = Keyframe.ofFloat(1f, 1f);
-        downFrame.setInterpolator(new AccelerateInterpolator());
-        PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofKeyframe("f", startFrame, upFrame,
-                downFrame);
-        ValueAnimator animator = ValueAnimator.ofPropertyValuesHolder(propertyValuesHolder);
+//        Keyframe startFrame = Keyframe.ofFloat(0f, 0f);
+//        Keyframe upFrame = Keyframe.ofFloat(0.5f, 0.5f);
+//        upFrame.setInterpolator(new DecelerateInterpolator());
+//        Keyframe downFrame = Keyframe.ofFloat(1f, 1f);
+//        downFrame.setInterpolator(new AccelerateInterpolator());
+//        PropertyValuesHolder propertyValuesHolder = PropertyValuesHolder.ofKeyframe("f", startFrame, upFrame,
+//                downFrame);
+//        ValueAnimator animator = ValueAnimator.ofPropertyValuesHolder(propertyValuesHolder);
+        ValueAnimator animator = ValueAnimator.ofFloat(0f, 1.0f);
+        animator.setInterpolator(new DecelerateInterpolator());
         animator.setDuration(durationSettingView.getDuration());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -163,7 +162,7 @@ public class CartAnimFragment extends Fragment {
     }
 
     private void increaseBadge() {
-        cartItemCount++;
+        cartItemCount += 9;
         updateBadge();
         cartBadge.setScaleX(1);
         cartBadge.setScaleY(1);
